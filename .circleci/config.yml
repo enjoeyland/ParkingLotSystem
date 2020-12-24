@@ -4,6 +4,9 @@ executors:
   my-jdk14:
     docker:
       - image: circleci/openjdk:14.0.1
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
 
 orbs:
   maven: circleci/maven@0.0.12
