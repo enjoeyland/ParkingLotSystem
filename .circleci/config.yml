@@ -2,24 +2,27 @@ version: 2.1
 
 orbs:
   maven: circleci/maven@1.0.3
-
-jobs:
-  test:
-    executor:
-      name: maven/default
-      tag: '14.0.1'
-    steps:
-      - checkout
-      - maven/with_cache:
-          steps:
-            - run:
-                name: Run Tests
-                command: mvn verify
-      - maven/process_test_results
+#
+#jobs:
+#  test:
+#    executor:
+#      name: maven/default
+#      tag: '14.0.1'
+#    steps:
+#      - checkout
+#      - maven/with_cache:
+#          steps:
+#            - run:
+#                name: Run Tests
+#                command: mvn verify
+#      - maven/process_test_results
 
 
 workflows:
   maven_test:
     jobs:
-      - test
-#      - maven/test # checkout, build, test, and upload test results
+#      - test
+      - maven/test: # checkout, build, test, and upload test results
+          executor:
+            name: maven/default
+            tag: 14.0.1
