@@ -1,12 +1,12 @@
 version: 2.1
 
-executors:
-  my-jdk14:
-    docker:
-      - image: circleci/openjdk:14.0.1
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+#executors:
+#  my-jdk14:
+#    docker:
+#      - image: circleci/openjdk:14.0.1
+#        auth:
+#          username: $DOCKERHUB_USERNAME
+#          password: $DOCKERHUB_PASSWORD
 
 orbs:
   maven: circleci/maven@0.0.12
@@ -15,4 +15,6 @@ workflows:
   maven_test:
     jobs:
       - maven/test: # checkout, build, test, and upload test results
-          executor: my-jdk14
+          executor:
+            maven/default:
+              tag: 14.0.1
