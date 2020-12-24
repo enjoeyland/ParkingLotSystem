@@ -5,16 +5,16 @@ orbs:
   maven: circleci/maven@0.0.12
 
 jabs:
-  my_test:
+  test:
     executor:
       name: maven/default
       tag: '14.0.1'
     steps:
       - checkout
-      - maven/with_cache
-      - maven/process_test_results
+#      - maven/with_cache
+#      - maven/process_test_results
 
 workflows:
   maven_test:
     jobs:
-      - my_test
+      - test
