@@ -1,10 +1,11 @@
+#      - maven/test # checkout, build, test, and upload test results
 version: 2.1
 
 orbs:
   maven: circleci/maven@0.0.12
 
 jabs:
-  test:
+  my_test:
     executor:
       name: maven/default
       tag: '14.0.1'
@@ -16,5 +17,4 @@ jabs:
 workflows:
   maven_test:
     jobs:
-      - test
-#      - maven/test # checkout, build, test, and upload test results
+      - my_test
