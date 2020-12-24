@@ -10,8 +10,13 @@ jobs:
       tag: '14.0.1'
     steps:
       - checkout
-      - maven/with_cache
+      - maven/with_cache:
+          steps:
+            - run:
+                name: Run Tests
+                command: mvn verify "$@"
       - maven/process_test_results
+
 
 workflows:
   maven_test:
