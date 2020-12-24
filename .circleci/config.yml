@@ -1,5 +1,10 @@
 version: 2.1
 
+executors:
+  my-jdk14:
+    docker:
+      - image: circleci/openjdk:14.0.1
+
 orbs:
   maven: circleci/maven@0.0.12
 
@@ -7,6 +12,4 @@ workflows:
   maven_test:
     jobs:
       - maven/test: # checkout, build, test, and upload test results
-          executor:
-            name: default
-            tag: '14.0.1'
+          executor: my-jdk14
