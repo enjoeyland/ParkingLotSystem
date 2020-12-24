@@ -7,4 +7,5 @@ workflows:
   maven_test:
     jobs:
       - maven/test: # checkout, build, test, and upload test results
-          executor: 14.0.1
+          executor:
+            tag: '14.0.1'
