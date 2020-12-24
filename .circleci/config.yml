@@ -1,9 +1,23 @@
 version: 2.1
 
+jabs:
+  test:
+    executor:
+      name: maven/default
+      tag: 14.0.1
+    steps:
+      - checkout
+      - maven/with_cache
+      - maven/process_test_results
+
+
 orbs:
   maven: circleci/maven@0.0.12
+
+
 
 workflows:
   maven_test:
     jobs:
-      - maven/test # checkout, build, test, and upload test results
+      - test
+#      - maven/test # checkout, build, test, and upload test results
