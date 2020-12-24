@@ -1,5 +1,13 @@
 version: 2.1
 
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:14.0.1
+    steps:
+      - checkout
+      - run: java --version
+
 orbs:
   maven: circleci/maven@0.0.12
 
