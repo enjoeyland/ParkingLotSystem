@@ -16,5 +16,4 @@ workflows:
     jobs:
       - maven/test: # checkout, build, test, and upload test results
           executor:
-            maven/default:
-              tag: 14.0.1
+            name: default
