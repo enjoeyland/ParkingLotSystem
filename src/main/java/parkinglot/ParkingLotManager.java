@@ -12,16 +12,19 @@ import java.util.NoSuchElementException;
  * contact : khmin1104@gmail.com
  */
 public class ParkingLotManager {
-    public final static int maximumVehicleNum = 100;
+    public final int maximumVehicleNum;
     private int currentVehicleNum = 0;
 
     private final ParkingInfoDAO parkingInfoDAO;
 
-    public ParkingLotManager(ParkingInfoDAO parkingInfoDAO) {
+    public ParkingLotManager(ParkingInfoDAO parkingInfoDAO, int maximumVehicleNum) {
         this.parkingInfoDAO = parkingInfoDAO;
+        this.maximumVehicleNum = maximumVehicleNum;
     }
 
     public void enterVehicle(ParkingInfo pi) {
+        // todo : 주차장에 있는 차량과 같은 차량번호인 차량이 입차하려 할 때 - 기존 입차 정보 무시
+        //  (실생활에서는 차량번호 인식기에 오류 있을 수 있고 또는 주차장 구조가 이상할 수 도있다.)
         if (isFull()) {
             throw new FullParkingLotException("만차입니다.");
         }
@@ -37,8 +40,12 @@ public class ParkingLotManager {
         return parkingInfo;
     }
 
+    /**
+     * have potential to throw runtime exception {@see ParkingInfo#getExitDateTime(ParkingInfo) getExitDateTime}
+     */
     public ParkingInfo exitVehicle(ParkingInfo pi, LocalDateTime exitDateTime) {
         pi.setExitDateTime(exitDateTime);
+        // todo : dao에 저장이 안되어 있는 parkingInfo를 exit하게 되면 currentVehicleNum이 음수가 될 수 있다.
         currentVehicleNum--;
         return pi;
     }

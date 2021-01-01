@@ -1,6 +1,7 @@
 package parkinglot.data;
 
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +22,7 @@ public class ParkingInfo {
     // 주차장 밖에 있는 차량들은 null이 아님
     private LocalDateTime exitDateTime;
 
-    public ParkingInfo(Vehicle vehicle, LocalDateTime enterDateTime) {
+    public ParkingInfo(@NonNull Vehicle vehicle, LocalDateTime enterDateTime) {
         this.vehicle = vehicle;
         this.vehicleType = VehicleType.typeOf(vehicle);
         this.enterDateTime = enterDateTime;

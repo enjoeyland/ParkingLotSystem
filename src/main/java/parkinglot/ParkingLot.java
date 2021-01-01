@@ -11,12 +11,12 @@ import java.util.Scanner;
  * contact : khmin1104@gmail.com
  */
 public class ParkingLot {
-    public static final boolean USE_GUI = true;
+    public static final boolean USE_GUI = false;
 
     public static void main(String[] args) {
         // create objects
         var parkingInfoDAO = new ParkingInfoDAO();
-        var parkingLotManager = new ParkingLotManager(parkingInfoDAO);
+        var parkingLotManager = new ParkingLotManager(parkingInfoDAO, 100);
 
         if (USE_GUI) {
             EventQueue.invokeLater(()->new ParkingSystemFrame(parkingLotManager));
