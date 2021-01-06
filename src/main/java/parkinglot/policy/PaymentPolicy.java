@@ -1,6 +1,10 @@
 package parkinglot.policy;
 
+import com.google.gson.annotations.JsonAdapter;
+import parkinglot.configUtil.PaymentPolicyJsonDeserializer;
+
 // Strategy Pattern
+@JsonAdapter(PaymentPolicyJsonDeserializer.class)
 public interface PaymentPolicy {
     int calculate(int timePeriod);
 
