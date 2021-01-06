@@ -1,0 +1,65 @@
+{
+  "capacity": 100,
+  "allowedVehicleType" : ["CAR", "TRUCK", "BUS"],
+  "forbiddenVehicleType": [],
+  "feePolicy" : [
+    {
+      "vehicleType": "CAR",
+      "baseFee" : 1000,
+      "baseTime": 30,
+      "rate" : 500,
+      "per" : 10
+    },{
+      "vehicleType": "BUS",
+      "specName" : "seatCapacity",
+      "spec" : [1,23],
+      "baseFee" : 2000,
+      "baseTime": 60,
+      "rate" : 1000,
+      "per" : 30
+    },{
+      "vehicleType": "BUS",
+      "specName" : "seatCapacity",
+      "spec" : [24,39],
+      "baseFee" : 3000,
+      "baseTime": 60,
+      "rate" : 1500,
+      "per" : 30
+    },{
+      "vehicleType": "BUS",
+      "specName" : "seatCapacity",
+      "spec" : 40,
+      "baseFee" : 4000,
+      "baseTime": 60,
+      "rate" : 2000,
+      "per" : 30
+    },{
+      "vehicleType": "TRUCK",
+      "specName" : "weight",
+      "spec" : [1,4],
+      "rate" : 2000,
+      "per" : 60
+    },{
+      "vehicleType": "TRUCK",
+      "specName" : "weight",
+      "spec" : [5,9],
+      "rate" : 3000,
+      "per" : 60
+    },{
+      "vehicleType": "TRUCK",
+      "specName" : "weight",
+      "spec" : 10,
+      "rate" : 4000,
+      "per" : 60
+    },{
+      "vehicleType": "CAR",
+      "specName": "carType",
+      "spec" : "Electric",
+      "rate" : 60,
+      "per" : 1,
+      "maxfee" : "rate * (batteryCapacity - leftBattery)"
+    }
+
+
+  ]
+}

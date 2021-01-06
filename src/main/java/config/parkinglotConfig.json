@@ -1,0 +1,13 @@
+{
+  "capacity": 50,
+  "allowedVehicleType" : ["CAR", "TRUCK"],
+  "forbiddenVehicleType": ["BUS"],
+  "feePolicy" : [{
+    "vehicleType": ["CAR", "TRUCK"],
+    "baseFee" : 1000,
+    "baseTime": 15,
+    "rate" : 200,
+    "per" : 10,
+    "maximumFeePerDay" : 10000
+  }]
+}
