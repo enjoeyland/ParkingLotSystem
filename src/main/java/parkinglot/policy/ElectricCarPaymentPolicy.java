@@ -2,6 +2,8 @@ package parkinglot.policy;
 
 import parkinglot.data.ElectricCar;
 
+import java.time.LocalDateTime;
+
 public class ElectricCarPaymentPolicy implements PaymentPolicy {
     private final static CarPaymentPolicy carPaymentPolicy = new CarPaymentPolicy();
     private final ChargingBatteryPaymentPolicy chargingBatteryPolicy;
@@ -12,7 +14,8 @@ public class ElectricCarPaymentPolicy implements PaymentPolicy {
     }
 
     @Override
-    public int calculate(int timePeriod) {
-        return chargingBatteryPolicy.calculate(timePeriod) + carPaymentPolicy.calculate(timePeriod);
+    public int calculate(LocalDateTime enterDT, LocalDateTime exitDT) {
+        return chargingBatteryPolicy.calculate(enterDT, exitDT)
+                + carPaymentPolicy.calculate(enterDT, exitDT);
     }
 }

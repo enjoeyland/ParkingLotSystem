@@ -18,7 +18,7 @@ public class ParkingLotUtils {
 
     public static int calculateParkingFee(ParkingInfo pi) {
         try {
-            return PaymentPolicyFactory.getPolicy(pi.getVehicle()).calculate(pi.getParkingTime());
+            return PaymentPolicyFactory.getPolicy(pi.getVehicle()).calculate(pi.getEnterDateTime(), pi.getExitDateTime());
         } catch (RuntimeException e) {
             return 0;
         }

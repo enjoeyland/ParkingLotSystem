@@ -2,6 +2,9 @@ package parkinglot.policy;
 
 import parkinglot.data.ElectricCar;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 public class ChargingBatteryPaymentPolicy implements PaymentPolicy {
     private static final double chargingSpeed = 0.2; // 분당
     private static final int rate = 300; // 1kw당 300원
@@ -15,11 +18,12 @@ public class ChargingBatteryPaymentPolicy implements PaymentPolicy {
     }
 
     @Override
-    public int calculate(int timePeriod) {
-        if (timePeriod >= (batteryCapacity - leftBattery)/chargingSpeed) {
+    public int calculate(LocalDateTime enterDT, LocalDateTime exitDT) {
+        int time = (int) enterDT.until(exitDT, ChronoUnit.MINUTES);
+        if (time >= (batteryCapacity - leftBattery)/chargingSpeed) {
             return rate * (batteryCapacity - leftBattery);
         } else {
-            return (int) Math.floor(rate * chargingSpeed * timePeriod);
+            return (int) Math.floor(rate * chargingSpeed * time);
         }
     }
 }

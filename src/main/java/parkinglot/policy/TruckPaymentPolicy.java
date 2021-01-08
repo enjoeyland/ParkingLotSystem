@@ -3,6 +3,8 @@ package parkinglot.policy;
 
 import parkinglot.data.Truck;
 
+import java.time.LocalDateTime;
+
 public class TruckPaymentPolicy implements PaymentPolicy {
     public static final PaymentPolicy heavy = PaymentPolicy.PaymentPerTimePolicy(4000, 60);
     public static final PaymentPolicy medium = PaymentPolicy.PaymentPerTimePolicy(3000, 60);
@@ -15,13 +17,13 @@ public class TruckPaymentPolicy implements PaymentPolicy {
     }
 
     @Override
-    public int calculate(int timePeriod) {
+    public int calculate(LocalDateTime enterDT, LocalDateTime exitDT) {
         if (weight >= 10) {
-            return heavy.calculate(timePeriod);
+            return heavy.calculate(enterDT, exitDT);
         } else if (weight >= 5) {
-            return medium.calculate(timePeriod);
+            return medium.calculate(enterDT, exitDT);
         } else {
-            return light.calculate(timePeriod);
+            return light.calculate(enterDT, exitDT);
         }
     }
 }

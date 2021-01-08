@@ -3,7 +3,9 @@ package parkinglot.policy;
 
 import parkinglot.data.Bus;
 
-public class BusPaymentPolicy implements PaymentPolicy {
+import java.time.LocalDateTime;
+
+public class BusPaymentPolicy implements PaymentPolicy { // TODO: 2021-01-08 condition
     private static final PaymentPolicy big = PaymentPolicy.PaymentPerTimeWithMinimumTimePolicy(60, 4000, 2000, 30);
     private static final PaymentPolicy medium = PaymentPolicy.PaymentPerTimeWithMinimumTimePolicy(60, 3000, 1500, 30);
     private static final PaymentPolicy small = PaymentPolicy.PaymentPerTimeWithMinimumTimePolicy(60, 2000, 1000, 30);
@@ -15,13 +17,13 @@ public class BusPaymentPolicy implements PaymentPolicy {
     }
 
     @Override
-    public int calculate(int timePeriod) {
+    public int calculate(LocalDateTime enterDT, LocalDateTime exitDT) {
         if (seatCapacity >= 40) {
-            return big.calculate(timePeriod);
+            return big.calculate(enterDT,exitDT);
         } else if (seatCapacity >= 24) {
-            return medium.calculate(timePeriod);
+            return medium.calculate(enterDT,exitDT);
         } else {
-            return small.calculate(timePeriod);
+            return small.calculate(enterDT,exitDT);
         }
     }
 }
